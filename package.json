@@ -1,0 +1,30 @@
+{
+  "name": "react-split-view",
+  "version": "0.0.0",
+  "description": "A draggable split view for React.",
+  "license": "MIT",
+  "repository": "btmills/react-split-view",
+  "homepage": "https://github.com/btmills/react-split-view#readme",
+  "bugs": {
+    "url": "https://github.com/btmills/react-split-view/issues"
+  },
+  "author": {
+    "name": "Brandon Mills",
+    "email": "mills.brandont@gmail.com",
+    "url": "https://github.com/btmills"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "clean": "rm -rf lib",
+    "prepublish": "npm run build",
+    "postpublish": "npm run clean",
+    "test": "eslint --ext js --ext jsx ."
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "split",
+    "splitter",
+    "draggable"
+  ]
+}
