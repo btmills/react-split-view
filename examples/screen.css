@@ -1,0 +1,21 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font: 16px sans-serif;
+}
+
+.App {
+	display: flex;
+	height: 100%;
+}
