@@ -19,7 +19,7 @@ export default React.createClass({
 	getDefaultProps() {
 		return {
 			direction: 'row',
-			splitterSize: 10
+			splitterSize: 4
 		};
 	},
 
