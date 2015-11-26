@@ -41,5 +41,8 @@
   },
   "peerDependencies": {
     "react": "^0.14.2"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.2.0"
   }
 }
