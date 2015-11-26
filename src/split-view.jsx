@@ -36,8 +36,6 @@ export default React.createClass({
 
 	handleMouseDown(event) {
 		this.activeSplitter = this.splitters.indexOf(event.target);
-		this.startPosition = this.props.direction === 'row'
-			? event.clientX : event.clientY;
 
 		window.addEventListener('mousemove', this.handleMouseMove);
 		window.addEventListener('mouseup', this.handleMouseUp);
