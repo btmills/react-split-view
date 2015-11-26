@@ -80,7 +80,10 @@ export default React.createClass({
 
 	getPaneStyle(index) {
 		return {
-			flex: this.state.ratios[index],
+			flexGrow: this.state.ratios[index],
+			flexShrink: 1,
+			flexBasis: 0,
+			overflow: 'scroll',
 			...this.props.paneStyle
 		};
 	},
