@@ -15,7 +15,22 @@ body {
 	font: 16px sans-serif;
 }
 
+p {
+	margin: 0;
+}
+
 .App {
 	display: flex;
+	flex-direction: column;
 	height: 100%;
+}
+
+.App-sidebar {
+	background: #f0f0f0;
+	flex: 0 0 40px;
+}
+
+.App-example {
+	display: flex;
+	flex: 1;
 }
