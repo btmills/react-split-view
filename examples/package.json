@@ -15,6 +15,7 @@
   "devDependencies": {
     "babel-core": "^6.1.21",
     "babel-loader": "^6.1.0",
+    "react-radio-group": "^2.1.1",
     "webpack": "^1.12.6"
   }
 }
