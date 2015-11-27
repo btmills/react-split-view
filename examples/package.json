@@ -3,6 +3,7 @@
   "scripts": {
     "build": "webpack",
     "clean": "rm -rf dist",
+    "dev": "webpack-dev-server",
     "lint": "eslint --ext js --ext jsx .",
     "test": "npm run lint",
     "watch": "webpack --watch"
@@ -16,6 +17,7 @@
     "babel-core": "^6.1.21",
     "babel-loader": "^6.1.0",
     "react-radio-group": "^2.1.1",
-    "webpack": "^1.12.6"
+    "webpack": "^1.12.6",
+    "webpack-dev-server": "^1.14.0"
   }
 }
