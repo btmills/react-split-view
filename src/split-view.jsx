@@ -80,6 +80,7 @@ export default React.createClass({
 
 	getPaneStyle(index) {
 		return {
+			display: 'flex',
 			flexGrow: this.state.ratios[index],
 			flexShrink: 1,
 			flexBasis: 0,
