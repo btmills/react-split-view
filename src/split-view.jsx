@@ -35,28 +35,50 @@ export default React.createClass({
 	},
 
 	handleMouseDown(event) {
-		this.activeSplitter = this.splitters.indexOf(event.target);
+		const splitterIndex = this.splitters.indexOf(event.target);
+
+		this.movement = {
+			splitterIndex,
+			availableRatio: this.state.ratios[splitterIndex]
+				+ this.state.ratios[splitterIndex + 1],
+			minimumPosition:
+				this.panes[splitterIndex]
+				.getBoundingClientRect()[
+					this.props.direction === 'row' ? 'left' : 'top'
+				],
+			maximumPosition:
+				this.panes[splitterIndex + 1]
+				.getBoundingClientRect()[
+					this.props.direction === 'row' ? 'right' : 'bottom'
+				]
+		};
 
 		window.addEventListener('mousemove', this.handleMouseMove);
 		window.addEventListener('mouseup', this.handleMouseUp);
 	},
 
 	handleMouseMove(event) {
-		const rect = this.refs.container.getBoundingClientRect();
-		const totalSize = this.props.direction === 'row' ? rect.width : rect.height;
-		const availableSize = totalSize - ((this.props.children.length - 1) * this.props.splitterSize);
+		const {
+			splitterIndex,
+			availableRatio,
+			minimumPosition,
+			maximumPosition
+		} = this.movement;
 
 		const currentPosition = this.props.direction === 'row'
-			? event.clientX - rect.left
-			: event.clientY - rect.top;
-		const adjustedPosition = currentPosition - (this.activeSplitter + 0.5) * this.props.splitterSize;
+			? event.clientX : event.clientY;
+		const relativePosition = (currentPosition - minimumPosition)
+			/ (maximumPosition - minimumPosition - this.props.splitterSize);
+
+		const beforeRatio = bound(0, availableRatio * relativePosition, availableRatio);
+		const afterRatio = availableRatio - beforeRatio;
 
 		this.setState({
 			ratios: [
-				...this.state.ratios.slice(0, this.activeSplitter),
-				bound(0, adjustedPosition / availableSize, 1),
-				bound(0, 1 - adjustedPosition / availableSize, 1),
-				...this.state.ratios.slice(this.activeSplitter + 2)
+				...this.state.ratios.slice(0, splitterIndex),
+				beforeRatio,
+				afterRatio,
+				...this.state.ratios.slice(splitterIndex + 2)
 			]
 		});
 
@@ -64,7 +86,7 @@ export default React.createClass({
 	},
 
 	handleMouseUp() {
-		Reflect.deleteProperty(this, 'activeSplitter');
+		Reflect.deleteProperty(this, 'movement');
 
 		window.removeEventListener('mousemove', this.handleMouseMove);
 		window.removeEventListener('mouseup', this.handleMouseUp);
