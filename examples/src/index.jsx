@@ -40,6 +40,7 @@ const App = React.createClass({
 					<SplitView direction={this.state.direction}>
 						<p>{lorem({ count: Math.random() * 8 })}</p>
 						<p>{lorem({ count: Math.random() * 8 })}</p>
+						<p>{lorem({ count: Math.random() * 8 })}</p>
 					</SplitView>
 				</div>
 			</div>
